@@ -19,32 +19,47 @@ class FlutterApp extends StatelessWidget {
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var title = [
+      'Nikhil',
+      'Dheeraj',
+      'Vimal',
+      'Yogesh',
+      'Sonu',
+      'Hrithik',
+      'Roy',
+      'Nm',
+      '404',
+      'WampireAsh',
+      'Mr. Unknown',
+      'Harsh',
+      'StarLord'
+    ];
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Main Screen",
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
-      body: Container(
-        color: Colors.grey.shade300,
-        child: Center(
-          child: Container(
-            height: 150,
-            width: 150,
-            decoration: BoxDecoration(
-                color: Colors.blue.shade400,
-                // shape: BoxShape.circle
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(21),
-                    bottomRight: Radius.circular(21)),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.grey, blurRadius: 21, spreadRadius: 21)
-                ]),
+        appBar: AppBar(
+          title: const Text(
+            "Main Screen",
+            style: TextStyle(color: Colors.white),
           ),
         ),
-      ),
-    );
+        body: ListView.separated(
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: const CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/my.jpg'),
+                  backgroundColor: Colors.blue,
+                  radius: 30,
+                ),
+                title: Text(title[index]),
+                subtitle: Text("+91 869404398"),
+                trailing: const Icon(Icons.accessibility_new_rounded),
+              );
+            },
+            separatorBuilder: (context, ind) {
+              return Divider(
+                height: 2,
+                color: Colors.grey.shade400,
+              );
+            },
+            itemCount: title.length));
   }
 }
