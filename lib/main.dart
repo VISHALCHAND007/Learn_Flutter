@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const FlutterApp());
@@ -25,6 +26,8 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var emailText = TextEditingController();
     var passwordText = TextEditingController();
+    var date = DateTime.now();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -38,6 +41,8 @@ class MainScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text(DateFormat('yMMMEd').format(date)),
+                Container(height: 10,),
                 TextField(
                   controller: emailText,
                   keyboardType: TextInputType.text,
@@ -54,7 +59,7 @@ class MainScreen extends StatelessWidget {
                 ),
                 Container(height: 10),
                 TextField(
-                  controller: passwordText,
+                    controller: passwordText,
                     keyboardType: TextInputType.number,
                     obscureText: true,
                     obscuringCharacter: '*',
@@ -77,7 +82,8 @@ class MainScreen extends StatelessWidget {
                 Container(height: 10),
                 ElevatedButton(
                     onPressed: () {
-                      print('Email: ${emailText.text}, password: ${passwordText.text}');
+                      print(
+                          'Email: ${emailText.text}, password: ${passwordText.text}');
                     },
                     child: const Text(
                       'Login',
