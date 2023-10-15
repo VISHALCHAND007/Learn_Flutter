@@ -43,15 +43,19 @@ class MainScreen extends StatelessWidget {
         ),
         body: ListView.separated(
             itemBuilder: (context, index) {
-              return ListTile(
-                leading: const CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/my.jpg'),
-                  backgroundColor: Colors.blue,
-                  radius: 30,
+              return Card(
+                margin: EdgeInsets.all(10),
+                child: ListTile(
+                  leading: const CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/my.jpg'),
+                    backgroundColor: Colors.blue,
+                    radius: 30,
+                  ),
+                  title: Text(title[index], style: const
+                  TextStyle(fontFamily: 'Raleway'),),
+                  subtitle: Text("+91 869404398"),
+                  trailing: const Icon(Icons.accessibility_new_rounded),
                 ),
-                title: Text(title[index]),
-                subtitle: Text("+91 869404398"),
-                trailing: const Icon(Icons.accessibility_new_rounded),
               );
             },
             separatorBuilder: (context, ind) {
