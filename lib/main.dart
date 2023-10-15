@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 void main() {
-  runApp(FlutterApp());
+  runApp(const FlutterApp());
 }
 
 class FlutterApp extends StatelessWidget {
+  const FlutterApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.amber),
-      home: MainScreen(),
+      home: const MainScreen(),
     );
   }
 }
 
 class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     var emailText = TextEditingController();
