@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(FlutterApp());
@@ -19,21 +20,8 @@ class FlutterApp extends StatelessWidget {
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var title = [
-      'Nikhil',
-      'Dheeraj',
-      'Vimal',
-      'Yogesh',
-      'Sonu',
-      'Hrithik',
-      'Roy',
-      'Nm',
-      '404',
-      'WampireAsh',
-      'Mr. Unknown',
-      'Harsh',
-      'StarLord'
-    ];
+    var emailText = TextEditingController();
+    var passwordText = TextEditingController();
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -41,29 +29,60 @@ class MainScreen extends StatelessWidget {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        body: ListView.separated(
-            itemBuilder: (context, index) {
-              return Card(
-                margin: EdgeInsets.all(10),
-                child: ListTile(
-                  leading: const CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/my.jpg'),
-                    backgroundColor: Colors.blue,
-                    radius: 30,
+        body: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextField(
+                  controller: emailText,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter Email',
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(color: Colors.orangeAccent)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(color: Colors.grey)),
+                    prefixIcon: Icon(Icons.email),
                   ),
-                  title: Text(title[index], style: const
-                  TextStyle(fontFamily: 'Raleway'),),
-                  subtitle: Text("+91 869404398"),
-                  trailing: const Icon(Icons.accessibility_new_rounded),
                 ),
-              );
-            },
-            separatorBuilder: (context, ind) {
-              return Divider(
-                height: 2,
-                color: Colors.grey.shade400,
-              );
-            },
-            itemCount: title.length));
+                Container(height: 10),
+                TextField(
+                  controller: passwordText,
+                    keyboardType: TextInputType.number,
+                    obscureText: true,
+                    obscuringCharacter: '*',
+                    decoration: InputDecoration(
+                        hintText: 'Enter Password',
+                        focusedBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: Colors.orangeAccent)),
+                        enabledBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                        prefixIcon: const Icon(Icons.password),
+                        suffixIcon: IconButton(
+                          icon: const Icon(Icons.remove_red_eye),
+                          onPressed: () {
+                            // print('Email: $emailText, password: $passwordText');
+                          },
+                        ))),
+                Container(height: 10),
+                ElevatedButton(
+                    onPressed: () {
+                      print('Email: ${emailText.text}, password: ${passwordText.text}');
+                    },
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(color: Colors.white),
+                    ))
+              ],
+            ),
+          ),
+        ));
   }
 }
